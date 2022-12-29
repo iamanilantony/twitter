@@ -4,9 +4,10 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
+import Timeline from "../components/Timeline";
 
 const Home: NextPage = () => {
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
+  const {data: session} = useSession();
 
   return (
     <>
@@ -16,8 +17,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <button onClick={()=> signIn()}>
-        Hi</button>
+        <Timeline />
       </div>
     </>
   );
